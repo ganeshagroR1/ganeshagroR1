@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
+    
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -66,6 +67,7 @@
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
+    
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -197,6 +199,25 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .map-link {
+      position: relative;
+      color: green;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Underline on hover */
+    .map-link:hover {
+      color: darkgreen;
+      text-decoration: underline;
+    }
+
+    /* Optional: change cursor on hover for better UX */
+    .map-link:hover {
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -266,10 +287,16 @@
 <section class="contact">
   <h2>Contact Us</h2>
   <p><strong>Address:</strong> 
-    <a href="https://maps.app.goo.gl/zJpYsM3KvNgB2nvU6" target="_blank" style="text-decoration: none; color: inherit;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg" alt="Google Maps" style="width:20px; vertical-align: middle; margin-right: 5px;">
-        Jhapa Chowk, Bhadrapur-4, Jhapa District, Nepal
-    </a>
+  <a href="https://maps.app.goo.gl/zJpYsM3KvNgB2nvU6" 
+     target="_blank" 
+     class="map-link" 
+     title="Go to Google Maps"
+     style="text-decoration: none; color: inherit;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg" 
+         alt="Google Maps" 
+         style="width:20px; vertical-align: middle; margin-right: 5px;">
+    Jhapa Chowk, Bhadrapur-4, Jhapa District, Nepal
+  </a>
   </p>
   <p><strong>Sales Phone:</strong> <a href="tel:+9779813635555">+977 98136-35-555</a></p>
   <p><strong>Quality Control:</strong> <a href="tel:+9779825655555">+977 98256-55-555</a></p>
@@ -316,6 +343,7 @@
 
 </body>
 </html>
+
 
 
 
