@@ -140,6 +140,63 @@
         height: 80px; /* smaller on phones */
       }
     }
+
+    /* Zoom animation */
+    .zoomable {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Hover zoom on desktop */
+    @media (hover: hover) {
+      .zoomable:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Tap zoom on mobile */
+    @media (hover: none) {
+      .zoomable:active {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 80%;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -177,26 +234,25 @@
   <h2>Our Products</h2>
   <div class="products-grid">
     <div class="product-item">
-      <img src="jeera masino steam.png" alt="Jeera Masino Steam" />
+      <img src="jeera masino steam.png" alt="Jeera Masino Steam" class="zoomable" data-full="jeera masino steam.png" />
       <p>Steam Jeera Masino</p>
     </div>
     <div class="product-item">
-      <img src="jeera masino steam1.png" alt="Jeera Masino Steam 1" />
+      <img src="jeera masino steam1.png" alt="Jeera Masino Steam 1" class="zoomable" data-full="jeera masino steam1.png" />
       <p>Steam Mansuli</p>
     </div>
     <div class="product-item">
-      <img src="sona mansuli steam.png" alt="Sona Mansuli Steam" />
+      <img src="sona mansuli steam.png" alt="Sona Mansuli Steam" class="zoomable" data-full="sona mansuli steam.png" />
       <p>Steam Sona Mansuli</p>
     </div>
     <div class="product-item">
-      <img src="raw mansuli.png" alt="Raw Mansuli" />
+      <img src="raw mansuli.png" alt="Raw Mansuli" class="zoomable" data-full="raw mansuli.png" />
       <p>Raw Mansuli</p>
     </div>
     <div class="product-item">
-      <img src="ricehub mansuli steam.png" alt="Ricehub Mansuli Steam" />
+      <img src="ricehub mansuli steam.png" alt="Ricehub Mansuli Steam" class="zoomable" data-full="ricehub mansuli steam.png" />
       <p>Steam Ricehub Mansuli</p>
     </div>
-    
   </div>
   <img src="summary.jpg" alt="Summary of Products" class="summary-photo" />
 </section>
@@ -222,14 +278,38 @@
   <p>&copy; 2025 Ganesh Agro - R1 Rice | All Rights Reserved</p>
 </footer>
 
+<!-- Modal Popup -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage" />
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".zoomable").forEach(img => {
+      img.addEventListener("click", function () {
+        if (window.matchMedia("(hover: none)").matches) {
+          modal.style.display = "block";
+          modalImg.src = this.getAttribute("data-full") || this.src;
+        }
+      });
+    });
+
+    closeBtn.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    modal.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
